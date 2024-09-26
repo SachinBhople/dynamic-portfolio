@@ -18,6 +18,8 @@ router
     .delete("/delete-carousel/:id", admin.deleteCarousel)
 
     .post("/add-project", admin.addProject)
+    .get("/get-project", admin.getProjects)
+    .delete("/delete-project/:id", admin.deleteProjects)
 
 
 module.exports = router
