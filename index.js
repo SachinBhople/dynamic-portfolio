@@ -13,7 +13,12 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: true,
+    origin: process.env.NODE_ENV === "development"
+        ? "http://localhost:5173"
+        : "https://dynamic-portfolio-ltn1.onrender.com"
+    ,
+
+
     credentials: true
 }))
 app.use(express.static("dist"))
