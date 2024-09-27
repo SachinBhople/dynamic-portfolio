@@ -16,6 +16,7 @@ app.use(cors({
     origin: true,
     credentials: true
 }))
+app.use(express.static("dist"))
 
 // routes
 app.use("/api/auth", require("./routes/auth.routes"))
@@ -25,8 +26,8 @@ app.use("/api/public", require("./routes/public.routes"))
 // 404
 app.use("*", (req, res) => {
     // if opt for mern stack with same hosting
-    // res.sendFile(path.join(__dirname, "dist", "index.html"))
-    res.status(404).json({ message: "Resource not found" })
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
+    // res.status(404).json({ message: "Resource not found" })
 })
 
 // error handler
