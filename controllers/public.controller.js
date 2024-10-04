@@ -2,6 +2,7 @@ const asyncHanlder = require("express-async-handler")
 const Carousel = require("../models/Carousel")
 const Projects = require("../models/Projects")
 const Inquiry = require("../models/Inquiry")
+const sendEmail = require("../utils/email")
 
 
 exports.getPublicCarsouel = asyncHanlder(async (req, res) => {
@@ -22,6 +23,11 @@ exports.getEnquery = asyncHanlder(async (req, res) => {
     res.json({ message: "enquery fetch Success", result })
 })
 exports.createEnquery = asyncHanlder(async (req, res) => {
+    const { name, email, company, message } = req.body
+    sendEmail({ to: "sachinb0841@gmail.com", message: `company${company},email${email} message ${message}`, subject: `new Enqurey from ${company}` })
+
+    sendEmail({ to: email, message: `thank you for Enqurey i Will get Touch with You soon`, subject: `thank you for your interst` })
+
     await Inquiry.create(req.body)
     res.json({ message: "enquery Added Success" })
 })
