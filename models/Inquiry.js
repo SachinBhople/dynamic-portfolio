@@ -13,6 +13,10 @@ const inquirySchma = new mongoose.Schema({
         type: String,
         required: true
     },
+    mobile: {
+        type: String,
+        required: true
+    },
     message: {
         type: String,
         required: true
